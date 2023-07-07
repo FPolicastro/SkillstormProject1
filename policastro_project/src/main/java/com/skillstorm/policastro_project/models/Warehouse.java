@@ -1,0 +1,108 @@
+package com.skillstorm.policastro_project.models;
+
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="warehouses")
+public class Warehouse {
+    
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name="location")
+    private String location;
+
+    @OneToMany(targetEntity = Stock.class, mappedBy = "warehouse")
+    private Set<Stock> stock;
+
+    public Warehouse() {
+    }
+
+    public Warehouse(int id, String location, Set<Stock> stock) {
+        this.id = id;
+        this.location = location;
+        this.stock = stock;
+    }
+
+    public Warehouse(int id, String location) {
+        this.id = id;
+        this.location = location;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Set<Stock> getStock() {
+        return stock;
+    }
+
+    public void setStock(Set<Stock> stock) {
+        this.stock = stock;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        result = prime * result + ((location == null) ? 0 : location.hashCode());
+        result = prime * result + ((stock == null) ? 0 : stock.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Warehouse other = (Warehouse) obj;
+        if (id != other.id)
+            return false;
+        if (location == null) {
+            if (other.location != null)
+                return false;
+        } else if (!location.equals(other.location))
+            return false;
+        if (stock == null) {
+            if (other.stock != null)
+                return false;
+        } else if (!stock.equals(other.stock))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Warehouse [id=" + id + ", location=" + location + ", stock=" + stock + "]";
+    }
+
+    
+
+
+}
