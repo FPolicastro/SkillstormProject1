@@ -1,5 +1,7 @@
 package com.skillstorm.policastro_project.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +29,7 @@ public class Item {
 
     @OneToMany(targetEntity = Stock.class, mappedBy = "item")
     @JsonBackReference
-    private Stock stock;
+    private Set<Stock> stock;
 
     public Item() {
     }
@@ -38,7 +40,9 @@ public class Item {
         this.units_per_item = units_per_item;
     }
 
-    public Item(int id, String name, double units_per_item, Stock stock) {
+
+
+    public Item(int id, String name, double units_per_item, Set<Stock> stock) {
         this.id = id;
         this.name = name;
         this.units_per_item = units_per_item;
@@ -69,13 +73,14 @@ public class Item {
         this.units_per_item = units_per_item;
     }
 
-    public Stock getStock() {
+        public Set<Stock> getStock() {
         return stock;
     }
 
-    public void setStock(Stock stock) {
+    public void setStock(Set<Stock> stock) {
         this.stock = stock;
     }
+    
 
     @Override
     public int hashCode() {
@@ -120,6 +125,8 @@ public class Item {
     public String toString() {
         return "Item [id=" + id + ", name=" + name + ", units_per_item=" + units_per_item + "]";
     }
+
+
 
     
 }
