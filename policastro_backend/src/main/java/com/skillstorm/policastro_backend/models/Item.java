@@ -1,6 +1,6 @@
-package com.skillstorm.policastro_project.models;
+package com.skillstorm.policastro_backend.models;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +29,7 @@ public class Item {
 
     @OneToMany(targetEntity = Stock.class, mappedBy = "item")
     @JsonBackReference
-    private Set<Stock> stock;
+    private List<Stock> stock;
 
     public Item() {
     }
@@ -42,7 +42,7 @@ public class Item {
 
 
 
-    public Item(int id, String name, double units_per_item, Set<Stock> stock) {
+    public Item(int id, String name, double units_per_item, List<Stock> stock) {
         this.id = id;
         this.name = name;
         this.units_per_item = units_per_item;
@@ -73,11 +73,11 @@ public class Item {
         this.units_per_item = units_per_item;
     }
 
-        public Set<Stock> getStock() {
+        public List<Stock> getStock() {
         return stock;
     }
 
-    public void setStock(Set<Stock> stock) {
+    public void setStock(List<Stock> stock) {
         this.stock = stock;
     }
     

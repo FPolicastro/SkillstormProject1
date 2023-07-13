@@ -1,9 +1,9 @@
-package com.skillstorm.policastro_project.services;
+package com.skillstorm.policastro_backend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skillstorm.policastro_project.repositories.ItemRepository;
+import com.skillstorm.policastro_backend.repositories.ItemRepository;
 
 @Service
 public class ItemService {

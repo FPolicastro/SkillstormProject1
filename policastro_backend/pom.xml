@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.skillstorm</groupId>
-	<artifactId>policastro_project</artifactId>
+	<artifactId>policastro_backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>policastro_project</name>
+	<name>policastro_backend</name>
 	<description>Simple warehouse database for Skillstorm project 1</description>
 	<properties>
 		<java.version>1.8</java.version>

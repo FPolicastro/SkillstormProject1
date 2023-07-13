@@ -1,6 +1,6 @@
-package com.skillstorm.policastro_project.models;
+package com.skillstorm.policastro_backend.models;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="warehouses")
@@ -22,13 +24,14 @@ public class Warehouse {
     @Column(name="location")
     private String location;
 
+    @JsonManagedReference
     @OneToMany(targetEntity = Stock.class, mappedBy = "warehouse")
-    private Set<Stock> stock;
+    private List<Stock> stock;
 
     public Warehouse() {
     }
 
-    public Warehouse(int id, String location, Set<Stock> stock) {
+    public Warehouse(int id, String location, List<Stock> stock) {
         this.id = id;
         this.location = location;
         this.stock = stock;
@@ -55,11 +58,11 @@ public class Warehouse {
         this.location = location;
     }
 
-    public Set<Stock> getStock() {
+    public List<Stock> getStock() {
         return stock;
     }
 
-    public void setStock(Set<Stock> stock) {
+    public void setStock(List<Stock> stock) {
         this.stock = stock;
     }
 

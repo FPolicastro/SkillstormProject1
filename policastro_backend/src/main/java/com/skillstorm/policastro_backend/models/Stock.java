@@ -1,4 +1,4 @@
-package com.skillstorm.policastro_project.models;
+package com.skillstorm.policastro_backend.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "stock")
@@ -21,10 +24,12 @@ public class Stock {
     @Column(name = "quantity")
     private int quantity;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item;

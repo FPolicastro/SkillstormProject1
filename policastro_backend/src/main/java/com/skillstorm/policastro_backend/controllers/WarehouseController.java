@@ -1,4 +1,4 @@
-package com.skillstorm.policastro_project.controllers;
+package com.skillstorm.policastro_backend.controllers;
 
 
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skillstorm.policastro_project.services.WarehouseService;
-import com.skillstorm.policastro_project.models.Warehouse;
+import com.skillstorm.policastro_backend.services.WarehouseService;
+import com.skillstorm.policastro_backend.models.Warehouse;
 
 @RestController
 @RequestMapping("/warehouses")
