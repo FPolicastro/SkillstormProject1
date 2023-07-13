@@ -3,6 +3,7 @@ import Warehouses from "./components/Warehouses";
 import Stock from "./components/Stock";
 import Items from "./components/Items";
 import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
 
 
 export default function App(){

@@ -24,11 +24,21 @@ public class Warehouse {
     @Column(name="location")
     private String location;
 
+    @Column(name="units")
+    private int units;
+
     @JsonManagedReference
     @OneToMany(targetEntity = Stock.class, mappedBy = "warehouse")
     private List<Stock> stock;
 
     public Warehouse() {
+    }
+
+    public Warehouse(int id, String location, int units, List<Stock> stock) {
+        this.id = id;
+        this.location = location;
+        this.units = units;
+        this.stock = stock;
     }
 
     public Warehouse(int id, String location, List<Stock> stock) {
@@ -66,12 +76,21 @@ public class Warehouse {
         this.stock = stock;
     }
 
+    public int getUnits() {
+        return units;
+    }
+
+    public void setUnits(int units) {
+        this.units = units;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + id;
         result = prime * result + ((location == null) ? 0 : location.hashCode());
+        result = prime * result + units;
         result = prime * result + ((stock == null) ? 0 : stock.hashCode());
         return result;
     }
@@ -92,6 +111,8 @@ public class Warehouse {
                 return false;
         } else if (!location.equals(other.location))
             return false;
+        if (units != other.units)
+            return false;
         if (stock == null) {
             if (other.stock != null)
                 return false;
@@ -102,8 +123,10 @@ public class Warehouse {
 
     @Override
     public String toString() {
-        return "Warehouse [id=" + id + ", location=" + location + ", stock=" + stock + "]";
+        return "Warehouse [id=" + id + ", location=" + location + ", units=" + units + ", stock=" + stock + "]";
     }
+
+    
 
     
 
