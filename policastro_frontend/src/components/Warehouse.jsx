@@ -36,7 +36,7 @@ export default function Warehouse({warehouseId, setCurrentWarehouse, warehouseDa
                     })}
                     <tr>
                         <td colSpan={3}/>
-                        <td style={{fontWeight:"bold"}}>{totalUnits}</td>
+                        <td style={{fontWeight:"bold"}}>{totalUnits}/{currentWarehouse.units}</td>
                     </tr>
                 </tbody>
             </table>

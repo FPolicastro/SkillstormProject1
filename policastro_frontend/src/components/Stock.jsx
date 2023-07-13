@@ -1,6 +1,6 @@
 
 
-export default function Stock(props){
+export default function Stock(){
 
     return(
         <>
