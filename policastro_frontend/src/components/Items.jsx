@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import ItemTable from "./ItemTable";
 
 
 export default function Items(){
@@ -18,7 +20,7 @@ export default function Items(){
 
     return(
         <>
-
+            <ItemTable items={items} setItems={setItems}/>
         </>
     )
 }

@@ -9,8 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "stock")
@@ -24,12 +23,12 @@ public class Stock {
     @Column(name = "quantity")
     private int quantity;
 
-    @JsonBackReference
+    @JsonIgnoreProperties("stock")
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
 
-    @JsonManagedReference
+    @JsonIgnoreProperties("stock")
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item;

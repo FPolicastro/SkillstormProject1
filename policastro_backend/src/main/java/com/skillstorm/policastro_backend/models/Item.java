@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="items")
@@ -28,7 +28,7 @@ public class Item {
     private double units_per_item;
 
     @OneToMany(targetEntity = Stock.class, mappedBy = "item")
-    @JsonBackReference
+    @JsonIgnoreProperties("item")
     private List<Stock> stock;
 
     public Item() {

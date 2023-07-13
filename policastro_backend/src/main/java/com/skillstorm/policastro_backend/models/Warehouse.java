@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="warehouses")
@@ -27,7 +27,7 @@ public class Warehouse {
     @Column(name="units")
     private int units;
 
-    @JsonManagedReference
+    @JsonIgnoreProperties("warehouse")
     @OneToMany(targetEntity = Stock.class, mappedBy = "warehouse")
     private List<Stock> stock;
 
