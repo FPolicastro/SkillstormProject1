@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 
-export default function ItemRow({item, items, disableEdit, setDisableEdit}){
+export default function ItemRow({item, setItems, items, disableEdit, setDisableEdit}){
 
     const url = 'http://localhost:8080/items';
 
@@ -48,6 +48,25 @@ export default function ItemRow({item, items, disableEdit, setDisableEdit}){
         .catch((error) => console.log(error))
     }
 
+    function deleteItem(event){
+        fetch(url + "/item", {
+            method: 'DELETE',
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(item)
+        })
+            .then(data => {data ? data.json() : {}})
+            .then(returnedData =>{
+                console.log(returnedData)
+                setItems((oldData) =>{
+                    return oldData.filter(thisItem => item.id != thisItem.id)
+                });
+
+            })
+            .catch((error) => console.log(error))
+    }
+
     return(
         <>
             {!beingEdited &&
@@ -55,7 +74,7 @@ export default function ItemRow({item, items, disableEdit, setDisableEdit}){
                 <div className="col">{itemName}</div>
                 <div className="col">{itemUnits}</div>
                 <div className="col"><button type="button" className="btn btn-warning" onClick={toggleBeingEdited} disabled={disableEdit}>Edit</button></div>
-                <div className="col"><button type="button" className="btn btn-danger">Delete</button></div>
+                <div className="col"><button type="button" className="btn btn-danger" onClick={deleteItem}>Delete</button></div>
             </div>
             }
             {beingEdited &&

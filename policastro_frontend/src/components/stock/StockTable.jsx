@@ -10,6 +10,12 @@ export default function StockTable({stock, setStock}){
     const [warehouses, setWarehouses] = useState([]);
     const [items, setItems] = useState([]);
 
+    const [updateState, setUpdateState] = useState(false)
+
+    function toggleState(){
+        setUpdateState(!updateState);
+    }
+
     useEffect(() => {
         fetch('http://localhost:8080/warehouses')
             .then(data => data.json())
@@ -24,6 +30,7 @@ export default function StockTable({stock, setStock}){
                 setItems(returnedData);
             })
             .catch(error => console.error(error));
+        
     }, []);
 
     function toggleAddingItem(){
@@ -64,7 +71,28 @@ export default function StockTable({stock, setStock}){
 
             })
             .catch(error => console.error(error))
+        toggleState();
 
+    }
+
+    function deleteStock(event){
+        let stock = event.target.value;
+        console.log(stock)
+        fetch(url + "/listing/" + stock, {
+            method: 'DELETE',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(data => {data ? data.json() : {}})
+            .then(returnedData =>{
+                console.log(returnedData)
+                setStock((oldData) =>{
+                    return oldData.filter(thisListing => stock.id != thisListing.id)
+                });
+            })
+            .catch((error) => console.log(error))
+        
     }
 
     return(
@@ -90,7 +118,7 @@ export default function StockTable({stock, setStock}){
                             <div className="col">{stockListing.item.units_per_item}</div>
                             <div className="col">{totalWeight}</div>
                             <div className="col"><button type="button" className="btn btn-warning">Edit</button></div>
-                            <div className="col"><button type="button" className="btn btn-danger">Delete</button></div>
+                            <div className="col"><button type="button" className="btn btn-danger" value={stockListing.id} onClick={deleteStock}>Delete</button></div>
                         </div>
                     )
                 })}

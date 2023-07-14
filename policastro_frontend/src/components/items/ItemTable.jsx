@@ -62,7 +62,7 @@ export default function ItemTable({items, setItems, refreshTable}){
                     </div>
                     {items.map((item) =>{
                         return (
-                            <ItemRow key={item.id} items={items} item={item} disableEdit={disableEdit} setDisableEdit={setDisableEdit}></ItemRow>
+                            <ItemRow key={item.id} setItems={setItems} items={items} item={item} disableEdit={disableEdit} setDisableEdit={setDisableEdit}></ItemRow>
                         )
                     })}
                     {!addingItem &&

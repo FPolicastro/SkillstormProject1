@@ -39,4 +39,8 @@ public class StockService {
     public void deleteStock(Stock stock) {
         repository.delete(stock);
     }
+
+    public void deleteStockById(int id) {
+        repository.deleteById(id);
+    }
 }

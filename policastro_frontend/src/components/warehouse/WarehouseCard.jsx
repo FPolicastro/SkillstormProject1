@@ -71,7 +71,7 @@ export default function WarehouseCard({warehouse, setCurrentWarehouse, setWareho
             {!editing &&
             <div className="card" style={{width: '18rem'}} key={warehouse.id}>
                 <div className = "card-body">
-                    <h5 className="card-title">{warehouse.location}</h5>
+                    <h5 className="card-title">{warehouseLocation}</h5>
                     <p className="card-text">Capacity: {warehouseUnits}</p>
                     <button type="button" className="btn btn-primary" onClick={() => setCurrentWarehouse(warehouse.id)}>Select</button>
                     <button type="button" className="btn btn-warning" onClick={toggleEditing}>Edit</button>
