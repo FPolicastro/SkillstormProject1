@@ -23,5 +23,10 @@ public class WarehouseService {
     public Warehouse createWarehouse(@Valid Warehouse warehouse) {
         return repository.save(warehouse);
     }
+
+    public Warehouse updateWarehouse(@Valid Warehouse warehouse) {
+        //TODO deal with storage capacity
+        return repository.save(warehouse);
+    }
     
 }

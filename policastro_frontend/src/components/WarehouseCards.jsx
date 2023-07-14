@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import WarehouseCard from "./WarehouseCard";
 
 
 export default function WarehouseCards({warehouseData, setCurrentWarehouse, handleNewWarehouse}){
@@ -48,13 +49,8 @@ export default function WarehouseCards({warehouseData, setCurrentWarehouse, hand
             <div className="d-flex flex-wrap">
                 {warehouseData.map((warehouse) =>{
                     return(
-                        <div className="card" style={{width: '18rem'}} key={warehouse.id}>
-                            <div className = "card-body">
-                                <h5 className="card-title">{warehouse.location}</h5>
-                                <p className="card-text">Capacity: {warehouse.units}</p>
-                                <button type="button" className="btn btn-primary" onClick={() => selectWarehouse(warehouse.id)}>Select</button>
-                            </div>
-                        </div>
+                        <WarehouseCard key={warehouse.id} warehouse={warehouse} setCurrentWarehouse={setCurrentWarehouse}></WarehouseCard>
+                        
                     )
                 })}
                 <div className="card" style={{width:'18rem'}}>

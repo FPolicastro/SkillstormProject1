@@ -17,5 +17,14 @@ public class ItemService {
     public List<Item> findAllItems() {
         return repository.findAll();
     }
+
+    public Item updateItem(Item item) {
+        //TODO handle capacity
+        return repository.save(item);
+    }
+
+	public Item createItem(Item item) {
+		return repository.save(item);
+	}
     
 }

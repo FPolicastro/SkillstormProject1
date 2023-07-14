@@ -27,8 +27,8 @@ public class Warehouse {
     @Column(name="units")
     private int units;
 
-    @Column(name="currentLoad")
-    private double currentLoad;
+    @Column(name="current_load")
+    private double current_load;
 
     @JsonIgnoreProperties("warehouse")
     @OneToMany(targetEntity = Stock.class, mappedBy = "warehouse")
@@ -39,11 +39,11 @@ public class Warehouse {
 
     
 
-    public Warehouse(int id, String location, int units, double currentLoad, List<Stock> stock) {
+    public Warehouse(int id, String location, int units, double current_load, List<Stock> stock) {
         this.id = id;
         this.location = location;
         this.units = units;
-        this.currentLoad = currentLoad;
+        this.current_load = current_load;
         this.stock = stock;
     }
 
@@ -99,12 +99,12 @@ public class Warehouse {
         this.units = units;
     }
 
-    public double getCurrentLoad() {
-        return currentLoad;
+    public double getcurrent_load() {
+        return current_load;
     }
 
-    public void setCurrentLoad(double currentLoad) {
-        this.currentLoad = currentLoad;
+    public void setcurrent_load(double current_load) {
+        this.current_load = current_load;
     }
 
 
@@ -116,7 +116,7 @@ public class Warehouse {
         result = prime * result + ((location == null) ? 0 : location.hashCode());
         result = prime * result + units;
         long temp;
-        temp = Double.doubleToLongBits(currentLoad);
+        temp = Double.doubleToLongBits(current_load);
         result = prime * result + (int) (temp ^ (temp >>> 32));
         result = prime * result + ((stock == null) ? 0 : stock.hashCode());
         return result;
@@ -140,7 +140,7 @@ public class Warehouse {
             return false;
         if (units != other.units)
             return false;
-        if (Double.doubleToLongBits(currentLoad) != Double.doubleToLongBits(other.currentLoad))
+        if (Double.doubleToLongBits(current_load) != Double.doubleToLongBits(other.current_load))
             return false;
         if (stock == null) {
             if (other.stock != null)
@@ -152,7 +152,7 @@ public class Warehouse {
 
     @Override
     public String toString() {
-        return "Warehouse [id=" + id + ", location=" + location + ", units=" + units + ", currentLoad=" + currentLoad
+        return "Warehouse [id=" + id + ", location=" + location + ", units=" + units + ", current_load=" + current_load
                 + ", stock=" + stock + "]";
     }
 

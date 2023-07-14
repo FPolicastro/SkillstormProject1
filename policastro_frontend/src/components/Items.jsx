@@ -7,6 +7,13 @@ export default function Items(){
     const url = 'http://localhost:8080/items';
 
     const [items, setItems] = useState([]);
+    const [showTable, setShowTable] = useState(true);
+
+    function refreshTable(){
+        console.log('table refreshed');
+        setShowTable(false);
+        setShowTable(true);
+    }
 
     useEffect(() => {
         fetch(url)
@@ -20,7 +27,7 @@ export default function Items(){
 
     return(
         <>
-            <ItemTable items={items} setItems={setItems}/>
+            {showTable && <ItemTable key={showTable} items={items} setItems={setItems} refreshTable={refreshTable}/>}
         </>
     )
 }
