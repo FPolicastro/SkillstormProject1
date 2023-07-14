@@ -19,7 +19,11 @@ export default function Warehouses(){
             .catch(error => console.error(error));
     }, []);
 
-
+    function handleNewWarehouse(warehouse){
+        setWarehouses((oldState) => {
+            return [...oldState, warehouse];
+        })
+    }
 
 
     return(
@@ -27,7 +31,7 @@ export default function Warehouses(){
 
 
             {(currentWarehouse == -1) ? 
-            <WarehouseCards warehouseData={warehouses} setCurrentWarehouse={setCurrentWarehouse}/> : 
+            <WarehouseCards warehouseData={warehouses} setCurrentWarehouse={setCurrentWarehouse} handleNewWarehouse={handleNewWarehouse}/> : 
             <Warehouse warehouseData = {warehouses} setCurrentWarehouse={setCurrentWarehouse} warehouseId={currentWarehouse}/>}
         </>
     )

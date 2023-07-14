@@ -27,12 +27,27 @@ public class Warehouse {
     @Column(name="units")
     private int units;
 
+    @Column(name="currentLoad")
+    private double currentLoad;
+
     @JsonIgnoreProperties("warehouse")
     @OneToMany(targetEntity = Stock.class, mappedBy = "warehouse")
     private List<Stock> stock;
 
     public Warehouse() {
     }
+
+    
+
+    public Warehouse(int id, String location, int units, double currentLoad, List<Stock> stock) {
+        this.id = id;
+        this.location = location;
+        this.units = units;
+        this.currentLoad = currentLoad;
+        this.stock = stock;
+    }
+
+
 
     public Warehouse(int id, String location, int units, List<Stock> stock) {
         this.id = id;
@@ -84,6 +99,15 @@ public class Warehouse {
         this.units = units;
     }
 
+    public double getCurrentLoad() {
+        return currentLoad;
+    }
+
+    public void setCurrentLoad(double currentLoad) {
+        this.currentLoad = currentLoad;
+    }
+
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -91,6 +115,9 @@ public class Warehouse {
         result = prime * result + id;
         result = prime * result + ((location == null) ? 0 : location.hashCode());
         result = prime * result + units;
+        long temp;
+        temp = Double.doubleToLongBits(currentLoad);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
         result = prime * result + ((stock == null) ? 0 : stock.hashCode());
         return result;
     }
@@ -113,6 +140,8 @@ public class Warehouse {
             return false;
         if (units != other.units)
             return false;
+        if (Double.doubleToLongBits(currentLoad) != Double.doubleToLongBits(other.currentLoad))
+            return false;
         if (stock == null) {
             if (other.stock != null)
                 return false;
@@ -123,10 +152,9 @@ public class Warehouse {
 
     @Override
     public String toString() {
-        return "Warehouse [id=" + id + ", location=" + location + ", units=" + units + ", stock=" + stock + "]";
+        return "Warehouse [id=" + id + ", location=" + location + ", units=" + units + ", currentLoad=" + currentLoad
+                + ", stock=" + stock + "]";
     }
-
-    
 
     
 

@@ -30,7 +30,11 @@ export default function App(){
             {view == 0 && <Warehouses/>}
             {view == 1 && <Stock/>}
             {view == 2 && <Items/>}
+
+            
         
         </>
     )
+
+    
 }

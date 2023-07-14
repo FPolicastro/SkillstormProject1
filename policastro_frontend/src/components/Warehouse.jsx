@@ -11,7 +11,7 @@ export default function Warehouse({warehouseId, setCurrentWarehouse, warehouseDa
     return(
         <>
             <h1>Selected {currentWarehouse.location}</h1>
-            <button type="button" class="btn btn-secondary" onClick={back}>Back</button>
+            <button type="button" className="btn btn-secondary" onClick={back}>Back</button>
             <table className="table">
                 <thead>
                     <tr>
@@ -26,7 +26,7 @@ export default function Warehouse({warehouseId, setCurrentWarehouse, warehouseDa
                         let itemWeight = stockListing.quantity * stockListing.item.units_per_item;
                         totalUnits += itemWeight;
                         return(
-                            <tr>
+                            <tr key={stockListing.id}>
                                 <td>{stockListing.item.name}</td>
                                 <td>{stockListing.quantity}</td>
                                 <td>{stockListing.item.units_per_item}</td>

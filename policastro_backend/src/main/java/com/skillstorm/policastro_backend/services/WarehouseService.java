@@ -2,6 +2,8 @@ package com.skillstorm.policastro_backend.services;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,10 @@ public class WarehouseService {
 
     public List<Warehouse> findAllWarehouses() {
         return repository.findAll();
+    }
+
+    public Warehouse createWarehouse(@Valid Warehouse warehouse) {
+        return repository.save(warehouse);
     }
     
 }
