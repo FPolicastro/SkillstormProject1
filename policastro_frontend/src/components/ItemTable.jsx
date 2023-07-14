@@ -17,43 +17,9 @@ export default function ItemTable({items, setItems, refreshTable}){
         });
     }
 
-    function submitForm(event){
-        event.preventDefault()
-        console.log(event);
+    
 
-        const data = new FormData(event.target)
-
-        const updateItem = {
-            id: data.get('idInput'),
-            name: data.get('nameInput'),
-            units_per_item: data.get('unitInput')
-        }
-
-        fetch(url + "/item", {
-            method: 'PUT',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updateItem)
-        })
-        .then((data) => data.json())
-        .then((returnedData) =>{ 
-            setItems((oldItems) =>{
-                for(let x = 0; x < oldItems.length; x++){
-                    console.log(oldItems[x])
-                    if (oldItems[x].id == returnedData.id){
-                        oldItems[x] = returnedData
-                        return oldItems
-                    }
-                }
-            });
-            setDisableEdit(false);
-            refreshTable();
-
-        })
-        .catch((error) => console.log(error))
-
-    }
+    
 
     function submitNew(event){
         event.preventDefault();
@@ -86,59 +52,54 @@ export default function ItemTable({items, setItems, refreshTable}){
 
     return (
         <>
-        <form onSubmit={submitForm}>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Units per Item</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
+        
+            <div className="container">
+                    <div className="row">
+                        <div className="col" style={{fontWeight:"bold"}}>Item</div>
+                        <div className="col" style={{fontWeight:"bold"}}>Units per Item</div>
+                        <div className="col"></div>
+                        <div className="col"></div>
+                    </div>
                     {items.map((item) =>{
                         return (
                             <ItemRow key={item.id} items={items} item={item} disableEdit={disableEdit} setDisableEdit={setDisableEdit}></ItemRow>
                         )
                     })}
                     {!addingItem &&
-                    <tr>
-                        <td><button type="button" className="btn btn-success" onClick={toggleAddingItem}>Create New Item</button></td>
-                    </tr>
+                    <div className="row">
+                        <div className="col">
+                            <button type="button" className="btn btn-success" onClick={toggleAddingItem}>Create New Item</button>
+                        </div>
+                    </div>
                     }
 
 
-                </tbody>
-            </table>
-        </form>
-        {addingItem &&
-            <>
-                <form onSubmit={submitNew}>
-                    <table className="table">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label htmlFor="nameInput" className="form-label">Item</label>
-                                    <input type="text" className="form-control" name="nameInput" id="nameInput"></input>
-                                </td>
-                    
-                                <td>
-                                    <label htmlFor="unitInput" className="form-label">Units Per Item</label>
-                                    <input type="number" className="form-control" min={0} name="unitInput" id="unitInput"></input>
-                                </td>
+                {addingItem &&
+                    <>
+                        <form onSubmit={submitNew}>
 
-                                <td>
-                                    <button type="submit" className="btn btn-success">Create</button>
-                                    <button type="button" className="btn btn-secondary" onClick={toggleAddingItem}>Cancel</button>
-                                </td>
-                            </tr>
-                        </tbody>
+                                    <div className="row">
+                                        <div className="col">
+                                            <label htmlFor="nameInput" className="form-label">Item</label>
+                                            <input type="text" className="form-control" name="nameInput" id="nameInput"></input>
+                                        </div>
+                            
+                                        <div className="col">
+                                            <label htmlFor="unitInput" className="form-label">Units Per Item</label>
+                                            <input type="number" className="form-control" min={0} name="unitInput" id="unitInput"></input>
+                                        </div>
 
-                    </table>
-     
-                </form>
-            </>}
+                                        <div className="col">
+                                            <button type="submit" className="btn btn-success">Create</button>
+                                            <button type="button" className="btn btn-secondary" onClick={toggleAddingItem}>Cancel</button>
+                                        </div>
+                                    </div>
+
+                        </form>
+                    </>
+                }
+            </div>
+
         </>
     )
 }

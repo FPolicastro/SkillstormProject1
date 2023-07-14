@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,11 +39,17 @@ public class ItemController {
         return new ResponseEntity<Item>(updatedItem, HttpStatus.OK);
     }
 
-    @PostMapping("item")
+    @PostMapping("/item")
     public ResponseEntity<Item> createItem(@RequestBody Item item){
         Item createdItem = service.createItem(item);
 
         return new ResponseEntity<Item>(createdItem, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/item")
+    public ResponseEntity<Item> deleteItem(@RequestBody Item item){
+        service.deleteItem(item);
+        return new ResponseEntity<Item>(item, HttpStatus.OK);
     }
     
 }

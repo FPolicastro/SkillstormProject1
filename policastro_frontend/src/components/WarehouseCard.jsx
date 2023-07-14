@@ -1,17 +1,39 @@
 import { useEffect, useState } from "react"
 
-export default function WarehouseCard({warehouse, setCurrentWarehouse}){
+export default function WarehouseCard({warehouse, setCurrentWarehouse, setWarehouses}){
 
     const url = 'http://localhost:8080/warehouses'
 
     const [editing, setEditing] = useState(false);
     const [warehouseUnits, setWarehouseUnits] = useState(0.0);
+    const [warehouseLocation, setWarehouseLocation] = useState("");
 
 
     useEffect(() =>{
         setWarehouseUnits(warehouse.units);
+        setWarehouseLocation(warehouse.location);
     }, [])
     function toggleEditing(){setEditing(!editing)};
+
+    function deleteWarehouse(){
+        fetch(url + "/warehouse", {
+            method: 'DELETE',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(warehouse)
+        })
+            .then(data => data.json())
+            .then(returnedData =>{
+                console.log(returnedData)
+                setWarehouses((oldData) =>{
+                    let a = [];
+                    return oldData.filter(thisWarehouse => warehouse.id != thisWarehouse.id)
+                });
+            })
+            .catch((error) => console.log(error))
+        
+    }
 
     function submitEdit(event){
         toggleEditing();
@@ -36,7 +58,7 @@ export default function WarehouseCard({warehouse, setCurrentWarehouse}){
         })
         .then((data) => data.json())
         .then((returnedData) =>{ 
-            warehouse.location = returnedData.location;
+            setWarehouseLocation(returnedData.location);
             warehouse.units = returnedData.units;
             warehouse.current_load = returnedData.current_load;
             setWarehouseUnits(returnedData.units);
@@ -53,6 +75,7 @@ export default function WarehouseCard({warehouse, setCurrentWarehouse}){
                     <p className="card-text">Capacity: {warehouseUnits}</p>
                     <button type="button" className="btn btn-primary" onClick={() => setCurrentWarehouse(warehouse.id)}>Select</button>
                     <button type="button" className="btn btn-warning" onClick={toggleEditing}>Edit</button>
+                    <button type="button" className="btn btn-danger" onClick={deleteWarehouse}>Delete</button>
                 </div>
             </div>
             }

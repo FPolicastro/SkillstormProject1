@@ -31,7 +31,7 @@ export default function Warehouses(){
 
 
             {(currentWarehouse == -1) ? 
-            <WarehouseCards warehouseData={warehouses} setCurrentWarehouse={setCurrentWarehouse} handleNewWarehouse={handleNewWarehouse}/> : 
+            <WarehouseCards warehouseData={warehouses} setCurrentWarehouse={setCurrentWarehouse} handleNewWarehouse={handleNewWarehouse} setWarehouses={setWarehouses}/> : 
             <Warehouse warehouseData = {warehouses} setCurrentWarehouse={setCurrentWarehouse} warehouseId={currentWarehouse}/>}
         </>
     )

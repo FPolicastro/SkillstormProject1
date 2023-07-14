@@ -20,6 +20,7 @@ export default function Stock(){
     return(
         <>
             <StockTable stock={stock} setStock={setStock}/>
+            <div style={{height:'30em'}}></div>
         </>
     )
 }

@@ -5,3 +5,8 @@
 .btn{
     margin: 3px;
 }
+
+.col{
+    border-bottom:black solid 1px;
+    border-top: black solid 1px;
+}

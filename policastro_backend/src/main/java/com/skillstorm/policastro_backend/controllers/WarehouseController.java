@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,7 +32,6 @@ public class WarehouseController {
         List<Warehouse> warehouses = warehouseService.findAllWarehouses();
 
         return new ResponseEntity<List<Warehouse>>(warehouses, HttpStatus.OK);
-
     }
 
     @PostMapping("/warehouse")
@@ -46,6 +46,12 @@ public class WarehouseController {
         Warehouse updatedWarehouse = warehouseService.updateWarehouse(warehouse);
 
         return new ResponseEntity<Warehouse>(updatedWarehouse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/warehouse")
+    public ResponseEntity<Warehouse> deleteWarehouse(@RequestBody Warehouse warehouse){
+        warehouseService.deleteWarehouse(warehouse);
+        return new ResponseEntity<Warehouse>(warehouse, HttpStatus.OK);
     }
     
 }

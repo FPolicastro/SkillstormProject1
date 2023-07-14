@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import WarehouseCard from "./WarehouseCard";
 
 
-export default function WarehouseCards({warehouseData, setCurrentWarehouse, handleNewWarehouse}){
+export default function WarehouseCards({warehouseData, setCurrentWarehouse, handleNewWarehouse, setWarehouses}){
 
     const url = 'http://localhost:8080/warehouses'
 
@@ -49,7 +49,7 @@ export default function WarehouseCards({warehouseData, setCurrentWarehouse, hand
             <div className="d-flex flex-wrap">
                 {warehouseData.map((warehouse) =>{
                     return(
-                        <WarehouseCard key={warehouse.id} warehouse={warehouse} setCurrentWarehouse={setCurrentWarehouse}></WarehouseCard>
+                        <WarehouseCard key={warehouse.id} warehouse={warehouse} setWarehouses={setWarehouses} warehouses={warehouseData} setCurrentWarehouse={setCurrentWarehouse}></WarehouseCard>
                         
                     )
                 })}
