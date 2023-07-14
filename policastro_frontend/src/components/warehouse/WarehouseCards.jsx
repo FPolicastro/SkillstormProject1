@@ -6,8 +6,8 @@ export default function WarehouseCards({warehouseData, setCurrentWarehouse, hand
 
     const url = 'http://localhost:8080/warehouses'
 
+    //Toggle for updating the new element card
     const [creating, setCreating] = useState(false);
-
     const toggleCreating = () => setCreating(!creating);
 
     function submitNew(event){
@@ -21,6 +21,7 @@ export default function WarehouseCards({warehouseData, setCurrentWarehouse, hand
 
         console.log(newWarehouse);
 
+        //Warehouse post to /warehouses/warehouse
         fetch(url + "/warehouse", {
             method: 'POST',
             headers:{
@@ -39,10 +40,8 @@ export default function WarehouseCards({warehouseData, setCurrentWarehouse, hand
             .catch(error => console.error(error))
     }
 
-    function selectWarehouse(warehouseId){
-        setCurrentWarehouse(warehouseId);
-    }
     console.log(warehouseData);
+    //Generates all cards using WarehouseCard component as well as a card for adding new warehouses
     return(
         <>
 
@@ -53,6 +52,7 @@ export default function WarehouseCards({warehouseData, setCurrentWarehouse, hand
                         
                     )
                 })}
+                {/**Last card for appending new warehouses */}
                 <div className="card" style={{width:'18rem'}}>
                     <div className="card-body">
                         {!creating? 

@@ -10,6 +10,7 @@ export default function App(){
 
     const [view, setView] = useState(0);
 
+    //Using the view state to switch between screens
     function viewItems(){
         setView(2);
     }
@@ -20,6 +21,7 @@ export default function App(){
         setView(0);
     }
 
+    //Real patchwork bugfix for state change issues
     function refreshView(){
         setView((oldView) => oldView + 1);
         setTimeout(()=>{setView((oldView) => oldView - 1);},1)

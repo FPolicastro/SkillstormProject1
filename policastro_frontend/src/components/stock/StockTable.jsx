@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 
-
+//Pretty bloated class containing all the stock data. In hindsight should have used more Components here
 export default function StockTable({stock, setStock}){
 
     const url = "http://localhost:8080/stock"
 
+    //States for table updates and modification
     const[addingItem,setAddingItem] = useState(false);
-
     const [warehouses, setWarehouses] = useState([]);
     const [items, setItems] = useState([]);
-
     const [updateState, setUpdateState] = useState(false)
 
     function toggleState(){
         setUpdateState(!updateState);
     }
 
+    //Getting warehouses and items in order to have a complete list of options when creating a new Stock entry
     useEffect(() => {
         fetch('http://localhost:8080/warehouses')
             .then(data => data.json())
@@ -33,10 +33,12 @@ export default function StockTable({stock, setStock}){
         
     }, []);
 
+    //Toggles the elements used for creating new stock entry
     function toggleAddingItem(){
         setAddingItem(!addingItem);
     }
 
+    //Form submit for creating a new Stock entry
     function submitNew(event){
         event.preventDefault();
         const data = new FormData(event.target);
@@ -52,7 +54,7 @@ export default function StockTable({stock, setStock}){
             
         }
 
-
+        //Post method to /stock/listing
         fetch(url + "/listing", {
             method: 'POST',
             headers:{
@@ -75,6 +77,7 @@ export default function StockTable({stock, setStock}){
 
     }
 
+    //Handler for delete button that is on every row.
     function deleteStock(event){
         let stock = event.target.value;
         console.log(stock)
@@ -108,6 +111,7 @@ export default function StockTable({stock, setStock}){
                     <div className="col"></div>
                 </div>
 
+                {/*Consider making this part a new component*/}
                 {stock.map((stockListing) =>{
                     let totalWeight = stockListing.quantity * stockListing.item.units_per_item;
                     return(
@@ -122,6 +126,7 @@ export default function StockTable({stock, setStock}){
                         </div>
                     )
                 })}
+                {/*Another short circuit toggle*/}
                 {!addingItem &&
                     <div className="row">
                         <div className="col">

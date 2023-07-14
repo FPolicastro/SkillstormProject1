@@ -57,6 +57,7 @@ public class StockController {
         return new ResponseEntity<Integer>(Integer.valueOf(id), HttpStatus.OK);
     }
 
+        //Alternative to other delete
     @DeleteMapping("/listing")
     public ResponseEntity<Stock> deleteStock(@RequestBody Stock stock){
         service.deleteStock(stock);

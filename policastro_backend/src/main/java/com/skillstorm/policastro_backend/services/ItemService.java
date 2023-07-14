@@ -19,6 +19,7 @@ public class ItemService {
         return repository.findAll();
     }
 
+    //Searching for a specific Item by id for StockService
     public Item findById(int id){
         Optional<Item> itemOptional = repository.findById(id);
         if (itemOptional.isPresent()){

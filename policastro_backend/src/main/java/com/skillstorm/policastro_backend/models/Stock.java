@@ -23,6 +23,8 @@ public class Stock {
     @Column(name = "quantity")
     private int quantity;
 
+        //JsonIgnoreProperties is great for avoiding recursion while maintaining joins
+
     @JsonIgnoreProperties("stock")
     @ManyToOne
     @JoinColumn(name = "warehouse_id")

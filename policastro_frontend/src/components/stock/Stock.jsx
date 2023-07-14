@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import StockTable from "./StockTable";
 
-
+//Simple class that gets stock from database and inputs it into table component
 export default function Stock(){
     const url = 'http://localhost:8080/stock';
 

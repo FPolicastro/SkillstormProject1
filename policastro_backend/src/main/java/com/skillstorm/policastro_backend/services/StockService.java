@@ -30,7 +30,9 @@ public class StockService {
         return repository.findById(stock.getId());
     }
 
+
     public Stock updateStock(Stock stock) {
+        //attempts at filling in missing information from body
         stock.setItem(itemService.findById(stock.getItem().getId()));
         stock.setWarehouse(warehouseService.findById(stock.getWarehouse().getId()));
         return repository.save(stock);

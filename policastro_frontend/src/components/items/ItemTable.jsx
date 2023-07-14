@@ -50,6 +50,7 @@ export default function ItemTable({items, setItems, refreshTable}){
 
     }
 
+    //Returns a table containing items
     return (
         <>
         
@@ -73,7 +74,7 @@ export default function ItemTable({items, setItems, refreshTable}){
                     </div>
                     }
 
-
+                {/*Toggle for the newItem form */}
                 {addingItem &&
                     <>
                         <form onSubmit={submitNew}>

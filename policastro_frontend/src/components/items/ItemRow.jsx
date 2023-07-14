@@ -19,6 +19,7 @@ export default function ItemRow({item, setItems, items, disableEdit, setDisableE
         //setDisableEdit(!disableEdit);
     };
 
+    //The onClick event for the edit form, sends PUT request
     function submitForm(event){
         event.preventDefault()
         console.log(event);
@@ -48,6 +49,7 @@ export default function ItemRow({item, setItems, items, disableEdit, setDisableE
         .catch((error) => console.log(error))
     }
 
+    //The onClick event for the delete button, sends DELETE request
     function deleteItem(event){
         fetch(url + "/item", {
             method: 'DELETE',
@@ -67,6 +69,8 @@ export default function ItemRow({item, setItems, items, disableEdit, setDisableE
             .catch((error) => console.log(error))
     }
 
+
+    //Low level html, just the row in ItemTable
     return(
         <>
             {!beingEdited &&

@@ -30,6 +30,7 @@ public class Warehouse {
     @Column(name="current_load")
     private double current_load;
 
+    //JsonIgnoreProperties is great for avoiding recursion while maintaining joins
     @JsonIgnoreProperties("warehouse")
     @OneToMany(targetEntity = Stock.class, mappedBy = "warehouse")
     private List<Stock> stock;

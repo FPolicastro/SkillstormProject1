@@ -1,14 +1,17 @@
 
-
+//Sort of an analysis report page
 export default function Warehouse({warehouseId, setCurrentWarehouse, warehouseData}){
 
     const currentWarehouse = warehouseData.find(x => x.id == warehouseId);
     let totalUnits = 0.0;
+    //Checks if capacity is too high (for color)
     let exceededCapacity = false;
 
+    //Used by Back button to return to select page
     function back(){
         setCurrentWarehouse(-1);
     }
+    //Returns a simple table with only the stock from the current warehouse
     return(
         <>
             <h1>Selected {currentWarehouse.location}</h1>
@@ -36,6 +39,7 @@ export default function Warehouse({warehouseId, setCurrentWarehouse, warehouseDa
                             </tr>
                         )
                     })}
+                    {/**Used the ternary operator to color a button with bootstrap */}
                     <tr className={exceededCapacity ? "table-danger" : "table-info"}>
                         <td colSpan={3}/>
                         <td style={{fontWeight:"bold"}}>{totalUnits}/{currentWarehouse.units}</td>

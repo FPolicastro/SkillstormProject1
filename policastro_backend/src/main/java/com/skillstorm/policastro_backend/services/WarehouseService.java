@@ -21,6 +21,7 @@ public class WarehouseService {
         return repository.findAll();
     }
 
+    //Searching for a specific warehouse by id for StockService
     public Warehouse findById(int id){
         Optional<Warehouse> warehouseOptional = repository.findById(id);
         if (warehouseOptional.isPresent()){

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 
+//Component for a singular warehouse card.
+//At first this was the hardest to get working, and at the end I felt like this was the most functional.
 export default function WarehouseCard({warehouse, setCurrentWarehouse, setWarehouses}){
 
     const url = 'http://localhost:8080/warehouses'
@@ -8,13 +10,16 @@ export default function WarehouseCard({warehouse, setCurrentWarehouse, setWareho
     const [warehouseUnits, setWarehouseUnits] = useState(0.0);
     const [warehouseLocation, setWarehouseLocation] = useState("");
 
-
+    //Set units when mounted
     useEffect(() =>{
         setWarehouseUnits(warehouse.units);
         setWarehouseLocation(warehouse.location);
     }, [])
+
+    //Toggle editing card state
     function toggleEditing(){setEditing(!editing)};
 
+    //Button handler for deleting the card
     function deleteWarehouse(){
         fetch(url + "/warehouse", {
             method: 'DELETE',
@@ -35,6 +40,7 @@ export default function WarehouseCard({warehouse, setCurrentWarehouse, setWareho
         
     }
 
+    //Form handler to edit card and return to normal view.
     function submitEdit(event){
         toggleEditing();
         event.preventDefault()
@@ -68,6 +74,7 @@ export default function WarehouseCard({warehouse, setCurrentWarehouse, setWareho
 
     return(
         <>
+            {/**Front side is information/select/delete */}
             {!editing &&
             <div className="card" style={{width: '18rem'}} key={warehouse.id}>
                 <div className = "card-body">
@@ -79,6 +86,7 @@ export default function WarehouseCard({warehouse, setCurrentWarehouse, setWareho
                 </div>
             </div>
             }
+            {/**Back side of cards is edit */}
             {editing &&
             <div className="card" style={{width: '18rem'}} key={warehouse.id}>
                 <div className = "card-body">
